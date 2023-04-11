@@ -13,6 +13,10 @@ body {
     background-attachment: fixed;
 }
 
+h1 {
+    margin: 2ch;
+}
+
 nav ul {
     display: inline-flex;
     list-style: none;
@@ -37,8 +41,12 @@ a:hover {
 .gallery {
     display: flex;
     flex-flow: row wrap;
+    justify-content: center;
     gap: 2ch;
     max-width: 75vw;
-    margin-top: 2rem;
     margin-inline: auto;
+}
+
+.game-thumbnail {
+    width: calc(75vw / 5);
 }
