@@ -2,7 +2,7 @@
   "name": "w07-node-fundamentals",
   "version": "0.1.0",
   "description": "Week 07 - Node Fundamental",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
