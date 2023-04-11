@@ -1,0 +1,13 @@
+{
+  "name": "w07-node-fundamentals",
+  "version": "0.1.0",
+  "description": "Week 07 - Node Fundamental",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Peter C. Matthews",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
