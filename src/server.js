@@ -114,6 +114,34 @@ router.patch('/games/:id', async (req, res) =>
     }
 });
 
+/**
+ * Delete a game.
+ *
+ * @route PATCH /games/:id
+ * @group Games
+ * @param {string} id.path.required - The game's ID.
+ * @returns {Error} 404 - Game not found.
+ * @returns {Error} 500 - Internal server error.
+ */
+router.delete('/games/:id', async (req, res) =>
+{
+    const { id } = req.params;
+    try
+    {
+        let game = await Game.findById(id);
+        if (!game)
+        {
+            return res.status(404).json({ message: 'Game not found' });
+        }
+        await game.deleteOne();
+        res.status(204).end();
+    } catch (err)
+    {
+        console.error(err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
 // Run on port 5001.
 var SERVER_PORT = 5001;
 app.listen(SERVER_PORT, () => console.log(`Server is listening on port ${SERVER_PORT}.`));
