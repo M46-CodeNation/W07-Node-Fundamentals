@@ -147,7 +147,7 @@ router.delete('/games/:id', async (req, res) =>
 // =====================================================================
 
 /**
- * Get all games within the collection.
+ * Get all games within the collection, optionally filtered by genre, series, or release.
  * 
  * @name GET /games
  * @param {object} req - Express request object
@@ -159,7 +159,13 @@ router.get('/games', async (_, res) =>
 {
     try
     {
-        const games = await Game.find();
+        const { genre, series, release } = req.query;
+        let query = {};
+        if (genre) query.genre = genre;
+        if (series) query.series = series;
+        if (release) query.release = release;
+    
+        const games = await Game.find(query);
         res.status(200).json({ message: "OK", data: games });
     } catch (err)
     {
