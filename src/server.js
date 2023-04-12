@@ -168,6 +168,29 @@ router.get('/games', async (_, res) =>
     }
 });
 
+/**
+ * Get a specific game, based on the SEO slug.
+ * 
+ * @name GET /game
+ * @param {object} req - Express request object
+ * @param {object} res - Express response object
+ * @returns {object} Returns a JSON object with the requested game.
+ * @throws {Error} Throws a 500 error if there was an internal server error.
+*/
+router.get('/game/:slug', async (req, res) =>
+{
+    const { slug } = req.params;
+    try
+    {
+        const games = await Game.find({ slug });
+        res.status(200).json({ message: "OK", data: games });
+    } catch (err)
+    {
+        console.error(err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
 // Run on port 5001.
 var SERVER_PORT = 5001;
 app.listen(SERVER_PORT, () => console.log(`Server is listening on port ${SERVER_PORT}.`));
