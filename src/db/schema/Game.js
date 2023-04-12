@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Game = mongoose.model("game", new mongoose.Schema({
+module.exports = mongoose.model("Game", new mongoose.Schema({
     slug: {
         type: String,
         required: true,
@@ -26,4 +26,3 @@ const Game = mongoose.model("game", new mongoose.Schema({
         unique:true
     }
 }));
-module.exports = Game;
