@@ -161,7 +161,7 @@ app.delete('/games/:id', async (req, res) =>
  * @returns {object} Returns a JSON object with all games.
  * @throws {Error} Throws a 500 error if there was an internal server error.
 */
-app.get('/games', async (_, res) =>
+app.get('/games', async (req, res) =>
 {
     try
     {
