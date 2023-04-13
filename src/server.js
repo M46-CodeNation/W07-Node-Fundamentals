@@ -34,7 +34,13 @@ app.post('/games', async (req, res) =>
 {
     try
     {
-        const game = new Game(req.body);
+        const game = new Game({
+            slug: req.body.slug,
+            genre: req.body.genre,
+            series: req.body.series,
+            release: req.body.release,
+            title: req.body.title
+        });
         const savedGame = await game.save();
         res.status(201).json({ data: savedGame });
     } catch (err)
@@ -164,7 +170,7 @@ app.get('/games', async (_, res) =>
         if (genre) query.genre = genre;
         if (series) query.series = series;
         if (release) query.release = release;
-    
+
         const games = await Game.find(query);
         res.status(200).json({ message: "OK", data: games });
     } catch (err)
