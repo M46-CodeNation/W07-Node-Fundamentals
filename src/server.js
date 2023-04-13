@@ -34,15 +34,14 @@ app.post('/games', async (req, res) =>
 {
     try
     {
-        const game = new Game({
-            slug: req.body.slug,
-            genre: req.body.genre,
-            series: req.body.series,
-            release: req.body.release,
-            title: req.body.title
-        });
-        const savedGame = await game.save();
-        res.status(201).json({ data: savedGame });
+        let result;
+        if (Array.isArray(req.body)) {
+            result = await Game.insertMany(req.body);
+        } else {
+            const game = new Game(req.body);
+            result = await game.save();
+        }
+        res.status(201).json({ data: result });
     } catch (err)
     {
         console.error(err);
@@ -210,3 +209,63 @@ app.get('/game/:slug', async (req, res) =>
 // Run on port 5001.
 var SERVER_PORT = 5001;
 app.listen(SERVER_PORT, () => console.log(`Server is listening on port ${SERVER_PORT}.`));
+
+
+
+var json = [
+    {
+        "genre": "Point & Click Adenture",
+        "slug": "mi4",
+        "series": "Monkey Island",
+        "release": 4,
+        "title": "Monkey Island 4: Escape from Monkey Island"
+    },
+    {
+        "genre": "Point & Click Adenture",
+        "slug": "mi5",
+        "series": "Monkey Island",
+        "release": 5,
+        "title": "Monkey Island 5: Tales of Monkey Island"
+    },
+    {
+        "genre": "Point & Click Adenture",
+        "slug": "dw1",
+        "series": "Discworld",
+        "release": 1,
+        "title": "Discworld"
+    },
+    {
+        "genre": "Point & Click Adenture",
+        "slug": "dw2",
+        "series": "Discworld",
+        "release": 2,
+        "title": "Discworld II: Missing, Presumed..."
+    },
+    {
+        "genre": "Point & Click Adenture",
+        "slug": "dw3",
+        "series": "Discworld",
+        "release": 3, title: "Discworld Noir"
+    },
+    {
+        "genre": "Point & Click Adenture",
+        "slug": "gk1",
+        "series": "Gabriel Knight",
+        "release": 1,
+        "title": "Gabriel Knight 1: Sins of the Father"
+    },
+    {
+        "genre": "Point & Click Adenture",
+        "slug": "gk2",
+        "series": "Gabriel Knight",
+        "release": 2,
+        "title": "Gabriel Knight 2: The Beast Within"
+    },
+    {
+        "genre": "Point & Click Adenture",
+        "slug": "gk3",
+        "series": "Gabriel Knight",
+        "release": 3,
+        "title": "Gabriel Knight 3: Blood of the Sacred, Blood of the Damned"
+    }
+];
