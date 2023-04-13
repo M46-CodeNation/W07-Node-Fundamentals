@@ -210,9 +210,30 @@ app.get('/game/:slug', async (req, res) =>
 var SERVER_PORT = 5001;
 app.listen(SERVER_PORT, () => console.log(`Server is listening on port ${SERVER_PORT}.`));
 
+// FOR REFERENCE PURPOSES ONLY.
 
-
-var json = [
+var referenceJson = [
+    {
+        "genre": "Point & Click Adenture",
+        "slug": "mi1",
+        "series": "Monkey Island",
+        "release": 1,
+        "title": "Monkey Island 1: The Secret of Monkey Island"
+    },
+    {
+        "genre": "Point & Click Adenture",
+        "slug": "mi2",
+        "series": "Monkey Island",
+        "release": 2,
+        "title": "Monkey Island 2: LeChuck's Revenge"
+    },
+    {
+        "genre": "Point & Click Adenture",
+        "slug": "mi3",
+        "series": "Monkey Island",
+        "release": 3,
+        "title": "Monkey Island 3: The Curse of Monkey Island"
+    },
     {
         "genre": "Point & Click Adenture",
         "slug": "mi4",
