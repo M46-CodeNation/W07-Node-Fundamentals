@@ -30,7 +30,7 @@ const app = express()
  * @returns {Game.model} 201 - The created game.
  * @returns {Error} 500 - Internal server error.
  */
-router.post('/games', async (req, res) =>
+app.post('/games', async (req, res) =>
 {
     try
     {
@@ -55,7 +55,7 @@ router.post('/games', async (req, res) =>
  * @returns {Error} 404 - Game not found.
  * @returns {Error} 500 - Internal server error.
  */
-router.put('/games/:id', async (req, res) =>
+app.put('/games/:id', async (req, res) =>
 {
     const { id } = req.params;
     try
@@ -90,7 +90,7 @@ router.put('/games/:id', async (req, res) =>
  * @returns {Error} 404 - Game not found.
  * @returns {Error} 500 - Internal server error.
  */
-router.patch('/games/:id', async (req, res) =>
+app.patch('/games/:id', async (req, res) =>
 {
     const { id } = req.params;
     try
@@ -123,7 +123,7 @@ router.patch('/games/:id', async (req, res) =>
  * @returns {Error} 404 - Game not found.
  * @returns {Error} 500 - Internal server error.
  */
-router.delete('/games/:id', async (req, res) =>
+app.delete('/games/:id', async (req, res) =>
 {
     const { id } = req.params;
     try
@@ -155,7 +155,7 @@ router.delete('/games/:id', async (req, res) =>
  * @returns {object} Returns a JSON object with all games.
  * @throws {Error} Throws a 500 error if there was an internal server error.
 */
-router.get('/games', async (_, res) =>
+app.get('/games', async (_, res) =>
 {
     try
     {
@@ -183,7 +183,7 @@ router.get('/games', async (_, res) =>
  * @returns {object} Returns a JSON object with the requested game.
  * @throws {Error} Throws a 500 error if there was an internal server error.
 */
-router.get('/game/:slug', async (req, res) =>
+app.get('/game/:slug', async (req, res) =>
 {
     const { slug } = req.params;
     try
@@ -196,6 +196,10 @@ router.get('/game/:slug', async (req, res) =>
         res.status(500).json({ message: 'Internal server error' });
     }
 });
+
+// =====================================================================
+//  RUN
+// =====================================================================
 
 // Run on port 5001.
 var SERVER_PORT = 5001;
